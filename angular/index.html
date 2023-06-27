@@ -26,7 +26,8 @@
                 </div>
             </div>
             <div class="ui action input">
-                <input type="text" placeholder="Message..." name="message" id="message" ng-model="message">
+                <input type="text" placeholder="Message..." name="message" id="message" ng-model="message"
+                    ng-keydown="checkEvent($event)">
                 <button class="ui icon button" ng-click="addMessage()">
                     <i class="circular paper plane icon"></i>
                 </button>

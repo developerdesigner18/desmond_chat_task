@@ -30,6 +30,12 @@ app.controller('ChatController', ['$scope', 'chatSocket', '$http', async functio
         $scope.$digest();
     })
 
+    $scope.checkEvent = function (event) {
+        if (event.key === 'Enter') {
+            $scope.addMessage()
+        }
+    }
+
     $scope.addMessage = function () {
         let value = { name: $scope.name || 'Anonymous', message: $scope.message }
         chatSocket.emit('sendMessage', value)
