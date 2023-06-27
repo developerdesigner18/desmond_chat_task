@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+    <link type="text/css" href="styles/app.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/bower_components/semantic/dist/semantic.min.css">
+</head>
+
+<body ng-app="chatModule" semantic-ui-init>
+
+    <section class="ui container" ng-controller='ChatController'>
+        <h1>Task Chat | Online User: {{userCount}}</h1>
+
+        <div class="messages-panel">
+            <div class="ui small input focus name_box">
+                <input type="text" name="name" id="name" ng-model="name" placeholder="Enter your name">
+                <button ng-click="saveName()" class="ui button">Save</button>
+            </div>
+            <div class="messages_box">
+                <div ng-repeat="chat in messages" class="ui message">
+                    <span>{{chat.name}} :</span>
+                    <span>{{chat.message}}</span>
+                </div>
+            </div>
+            <div class="ui action input">
+                <input type="text" placeholder="Message..." name="message" id="message" ng-model="message">
+                <button class="ui icon button" ng-click="addMessage()">
+                    <i class="circular paper plane icon"></i>
+                </button>
+            </div>
+        </div>
+
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.0/angular.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="/bower_components/semantic/dist/semantic.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="controller/app.js"></script>
+</body>
+
+</html>

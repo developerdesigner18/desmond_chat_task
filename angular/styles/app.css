@@ -1,0 +1,33 @@
+.input_box {
+  display: flex;
+  gap: 1em;
+}
+.name_box {
+  max-width: 40%;
+}
+::-webkit-scrollbar {
+  width: 0; /* Remove scrollbar space */
+  background: transparent; /* Optional: just make scrollbar invisible */
+}
+/* Optional: show position indicator in red */
+::-webkit-scrollbar-thumb {
+  background: #ff0000;
+}
+.messages_box::-webkit-scrollbar {
+  width: 0;
+}
+section.chat-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.messages-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+}
+.messages_box {
+  height: 60vh;
+  display: block;
+  overflow-y: scroll;
+}
