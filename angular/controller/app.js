@@ -12,10 +12,17 @@ app.controller('ChatController', ['$scope', 'chatSocket', '$http', async functio
     if (localStorage.getItem('chat_user_name')) {
         $scope.name = localStorage.getItem('chat_user_name')
     }
+    $scope.scrollToBottom = function () {
+        const element = document.getElementById("scroll");
+        element.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
+    }
 
     let data = await http.get('allMessages')
     if (data.data.success) {
         $scope.messages = data.data.messages
+        setTimeout(() => {
+            $scope.scrollToBottom()
+        }, 1000)
     } else {
         $scope.messages = []
     }
@@ -28,6 +35,7 @@ app.controller('ChatController', ['$scope', 'chatSocket', '$http', async functio
     chatSocket.on('newMessage', function (data) {
         $scope.messages.push(data)
         $scope.$digest();
+        $scope.scrollToBottom()
     })
 
     $scope.checkEvent = function (event) {
@@ -37,10 +45,16 @@ app.controller('ChatController', ['$scope', 'chatSocket', '$http', async functio
     }
 
     $scope.addMessage = function () {
+        if ($scope.message === undefined || $scope.message === '') {
+            return
+        }
         let value = { name: $scope.name || 'Anonymous', message: $scope.message }
         chatSocket.emit('sendMessage', value)
         $scope.message = ''
         $scope.messages.push(value)
+        setTimeout(() => {
+            $scope.scrollToBottom()
+        }, 1000)
     }
 
     $scope.saveName = function () {
