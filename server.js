@@ -60,6 +60,7 @@ io.sockets.on('connection', async (socket) => {
     socket.on('disconnect', () => {
         console.log('user is disconnected!')
         users--
+        io.sockets.emit('getTotalOnlineUser', users)
     })
 
 });
